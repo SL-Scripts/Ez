@@ -1,0 +1,130 @@
+local DiscordLib =
+    loadstring(game:HttpGet "https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/discord")()
+
+local win = DiscordLib:Window("Yxu Hub")
+
+local serv = win:Server("BETA TESTING!", "")
+
+local btns = serv:Channel("Buttons")
+
+btns:Button(
+    "Kill all",
+    function()
+        DiscordLib:Notification("Notification", "Killed everyone!", "Okay!")
+    end
+)
+
+btns:Seperator()
+
+btns:Button(
+    "Get max level",
+    function()
+        DiscordLib:Notification("Notification", "Max level!", "Okay!")
+    end
+)
+
+local tgls = serv:Channel("Toggles")
+
+tgls:Toggle(
+    "Auto Tushita",
+    false,
+    function(bool)
+       getgenv().AutoTushita = Value
+      task.spawn(function()
+        local Map = workspace:WaitForChild("Map", 9e9)
+        local Turtle = Map:WaitForChild("Turtle", 9e9)
+        local QuestTorches = Turtle:WaitForChild("QuestTorches", 9e9)
+        
+        local Active1 = false
+        local Active2 = false
+        local Active3 = false
+        local Active4 = false
+        local Active5 = false
+        
+        while getgenv().AutoTushita do task.wait()
+          if not Turtle:FindFirstChild("TushitaGate") then
+            local Enemie = Enemies:FindFirstChild("Longma")
+            
+            if Enemie and Enemie:FindFirstChild("HumanoidRootPart") then
+              PlayerTP(Enemie.HumanoidRootPart.CFrame + getgenv().FarmPos)
+              pcall(function()PlayerClick()ActiveHaki()EquipTool()end)
+            else
+              PlayerTP(CFrame.new(-10218, 333, -9444))
+            end
+          elseif VerifyNPC("rip_indra True Form") then
+            if not VerifyTool("Holy Torch") then
+              PlayerTP(CFrame.new(5152, 142, 912))
+            else
+              local Torch1 = QuestTorches:FindFirstChild("Torch1")
+              local Torch2 = QuestTorches:FindFirstChild("Torch2")
+              local Torch3 = QuestTorches:FindFirstChild("Torch3")
+              local Torch4 = QuestTorches:FindFirstChild("Torch4")
+              local Torch5 = QuestTorches:FindFirstChild("Torch5")
+              
+              local args1 = Torch1 and Torch1:FindFirstChild("Particles")
+              and Torch1.Particles:FindFirstChild("PointLight") and not Torch1.Particles.PointLight.Enabled
+              local args2 = Torch2 and Torch2:FindFirstChild("Particles")
+              and Torch2.Particles:FindFirstChild("PointLight") and not Torch2.Particles.PointLight.Enabled
+              local args3 = Torch3 and Torch3:FindFirstChild("Particles")
+              and Torch3.Particles:FindFirstChild("PointLight") and not Torch3.Particles.PointLight.Enabled
+              local args4 = Torch4 and Torch4:FindFirstChild("Particles")
+              and Torch4.Particles:FindFirstChild("PointLight") and not Torch4.Particles.PointLight.Enabled
+              local args5 = Torch5 and Torch5:FindFirstChild("Particles")
+              and Torch5.Particles:FindFirstChild("PointLight") and not Torch5.Particles.PointLight.Enabled
+              
+              if not Active1 and args1 then
+                PlayerTP(Torch1.CFrame)
+              elseif not Active2 and args2 then
+                PlayerTP(Torch2.CFrame)Active1 = true
+              elseif not Active3 and args3 then
+                PlayerTP(Torch3.CFrame)Active2 = true
+              elseif not Active4 and args4 then
+                PlayerTP(Torch4.CFrame)Active3 = true
+              elseif not Active5 and args5 then
+                PlayerTP(Torch5.CFrame)Active4 = true
+              else
+                Active5 = true
+              end
+            end
+          else
+            if VerifyTool("God's Chalice") then
+              EquipToolName("God's Chalice")
+              PlayerTP(CFrame.new(-5561, 314, -2663))
+            else
+              local NPC = "EliteBossVerify"QuestVisible()
+              
+              if VerifyQuest("Diablo") then
+                NPC = "Diablo"
+              elseif VerifyQuest("Deandre") then
+                NPC = "Deandre"
+              elseif VerifyQuest("Urban") then
+                NPC = "Urban"
+              else
+                task.spawn(function()FireRemote("EliteHunter")end)
+              end
+              
+              local EliteBoss = GetEnemies({NPC})
+              
+              if EliteBoss and EliteBoss:FindFirstChild("HumanoidRootPart") then
+                PlayerTP(EliteBoss.HumanoidRootPart.CFrame + getgenv().FarmPos)
+                pcall(function()PlayerClick()ActiveHaki()EquipTool()end)
+              elseif not VerifyNPC("Deandre") and not VerifyNPC("Diablo") and not VerifyNPC("Urban") then
+                if getgenv().AutoTushitaHop then
+                  ServerHop()
+                end
+              end
+            end
+          end
+        end
+      end)
+    end
+        print(bool)
+    end
+)
+
+serv:Channel("by Team Yxu.
+
+AZ_X
+EkkyxZ.")
+
+win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
